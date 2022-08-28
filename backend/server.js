@@ -1,10 +1,32 @@
 const express = require('express')
+const mongoose = require('mongoose')
+const {readdirSync} = require('fs')
+const cors = require('cors')
+const dotenv = require('dotenv')
+
 const app = express()
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+// middleware
+app.use(cors())
+dotenv.config()
+
+// database
+mongoose.connect(process.env.MONGODB_CONNECTION_URL).then(()=>{
+  console.log('DB Connected')
 })
 
-app.listen(8000,()=>{
-    console.log("server running on port 8000")
+// routes
+readdirSync('./routes').map((f)=>
+  app.use("/", require("./routes/"+f))
+)
+
+// ENV
+const port = process.env.PORT || 8000
+
+
+
+
+
+app.listen(port,()=>{
+    console.log(`server running on port ${port}`)
 })
