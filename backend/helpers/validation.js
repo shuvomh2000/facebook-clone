@@ -1,3 +1,5 @@
+const User = require("../models/User.js");
+
 // Email validtion
 exports.validateEmail = (email) => {
   return String(email)
@@ -12,3 +14,18 @@ exports.validateLength = (text, min, max) => {
   }
   return true;
 };
+
+// validation username
+exports.validateUsername = async (username) => {
+    let a = false
+    do{
+        let check = await User.findOne({username})
+        if(check){
+            username += (new Date()*Math.random().toString().substring(0,2))
+            a = true
+        }else{
+            a = false
+        }
+    }while (a)
+    return username
+}

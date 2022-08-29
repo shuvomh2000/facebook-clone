@@ -1,6 +1,11 @@
-const { validateEmail, validateLength } = require("../helpers/validation.js");
+const {
+  validateEmail,
+  validateLength,
+  validateUsername,
+} = require("../helpers/validation.js");
 const User = require("../models/User.js");
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
+const { generateToken } = require("../helpers/tokens.js");
 
 exports.register = async (req, res) => {
   try {
@@ -8,7 +13,6 @@ exports.register = async (req, res) => {
       first_name,
       last_name,
       email,
-      username,
       password,
       bYear,
       bMonth,
@@ -32,13 +36,17 @@ exports.register = async (req, res) => {
     if (!validateLength(first_name, 3, 30)) {
       res
         .status(400)
-        .json({ message: "first name minimum charecter 3 & maximum charecter 30" });
+        .json({
+          message: "first name minimum charecter 3 & maximum charecter 30",
+        });
     }
 
     if (!validateLength(last_name, 3, 30)) {
       res
         .status(400)
-        .json({ message: "last name minimum charecter 3 & maximum charecter 30" });
+        .json({
+          message: "last name minimum charecter 3 & maximum charecter 30",
+        });
     }
 
     if (!validateLength(password, 6, 40)) {
@@ -46,21 +54,28 @@ exports.register = async (req, res) => {
     }
 
     // password incription
-    const cyptedPassword = await bcrypt.hash(password,12)
+    const cyptedPassword = await bcrypt.hash(password, 12);
 
-    return;
+    // username genarate
+    const tempUsername = first_name + last_name;
+    const newUsername = await validateUsername(tempUsername);
+    console.log(newUsername);
 
     const user = await new User({
       first_name,
       last_name,
       email,
-      username,
-      password:cyptedPassword,
+      username: newUsername,
+      password: cyptedPassword,
       bYear,
       bMonth,
       bDay,
       gender,
     }).save();
+
+    const emailVerificationToken = generateToken({id:user._id},'30m')
+    console.log(emailVerificationToken)
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
