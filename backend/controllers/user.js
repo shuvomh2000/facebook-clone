@@ -1,8 +1,5 @@
-const {
-  validateEmail,
-  validateLength,
-  validateUsername,
-} = require("../helpers/validation.js");
+const {validateEmail,validateLength,validateUsername} = require("../helpers/validation.js");
+const jwt = require("jsonwebtoken")
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../helpers/tokens.js");
