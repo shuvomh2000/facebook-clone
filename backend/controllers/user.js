@@ -57,7 +57,6 @@ exports.register = async (req, res) => {
     // username genarate
     const tempUsername = first_name + last_name;
     const newUsername = await validateUsername(tempUsername);
-    console.log(newUsername);
 
     const user = await new User({
       first_name,
@@ -74,8 +73,22 @@ exports.register = async (req, res) => {
     const emailVerificationToken = generateToken({id:user._id},'30m')
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`
     sendVerificationMail(user.email,user.first_name,url)
-    res.json(user);
+    const token = generateToken({id:user._id.toString()},'7d')
+    res.send({
+      id:user._id,
+      username: user.username,
+      first_name:user.first_name,
+      last_name:user.last_name,
+      token: token,
+      varified:user.varified,
+      message:"Register Success active your email"
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.activeAccount = async (req,res) => {
+  const {token} = req.body
+  const user = jwt.verify(token, process.env.TOKEN_SECRET)
+}
