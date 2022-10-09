@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const {google} = reqquire("googleapis")
+const {google} = require("googleapis")
 const {OAuth2} =google.auth
 
 const accessLink = "https://developers.google.com/oauth.playground"

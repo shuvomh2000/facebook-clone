@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken")
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../helpers/tokens.js");
+const { sendVerificationMail } = require("../helpers/mailing.js");
 
 exports.register = async (req, res) => {
   try {
@@ -71,8 +72,8 @@ exports.register = async (req, res) => {
     }).save();
 
     const emailVerificationToken = generateToken({id:user._id},'30m')
-    console.log(emailVerificationToken)
-
+    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`
+    sendVerificationMail(user.email,user.first_name,url)
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
