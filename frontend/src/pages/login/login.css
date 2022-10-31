@@ -1,0 +1,21 @@
+.login{
+    width: 100vw;
+    height: 100vh;
+    background: #F0F2F5;
+}
+
+.login .box{
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    margin-top: 135px;
+}
+
+.login p{
+    color: #1C1E21;
+    font-size: 28px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    line-height: 32px;
+    width: 565px;
+}
