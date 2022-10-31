@@ -8,14 +8,30 @@
     padding: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
     border-radius: 15px;
-    margin-top: 135px;
+    margin-top: 100px;
+    
 }
 
-.login p{
+.login .logo_text{
     color: #1C1E21;
     font-size: 28px;
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
     line-height: 32px;
     width: 565px;
+}
+
+.login .forget{
+    color: #1877F2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #DDDFE2;
+}
+
+.login .forget:hover{
+    text-decoration: underline;
 }
