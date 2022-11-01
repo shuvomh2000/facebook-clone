@@ -11,6 +11,9 @@ const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
     color: "#166FE5",
   },
+  ["@media (min-width:600px) and (max-width:768px)"]: {
+    marginBottom: "10px",
+  },
 });
 
 // for login button styled
@@ -24,6 +27,15 @@ const MainButton = styled(Button)(({ theme }) => ({
   textTransform: "none",
   marginBottom: "15px",
   fontFamily: ["Poppins", " sans-serif"],
+  ["@media (min-width:375px) and (max-width:599px)"]: {
+    fontSize: 18,
+    padding: "5px 15px",
+  },
+  ["@media (min-width:600px) and (max-width:768px)"]: {
+    fontSize: 14,
+    padding: "5px 15px",
+    marginBottom: "10px",
+  },
 }));
 
 const CreateButton = styled(Button)(({ theme }) => ({
@@ -35,21 +47,36 @@ const CreateButton = styled(Button)(({ theme }) => ({
   marginTop: "10px",
   textTransform: "capitalize",
   fontFamily: ["Poppins", " sans-serif"],
-  "&:hover":{
-    backgroundColor: '#38c41c'
-  }
+  "&:hover": {
+    backgroundColor: "#38c41c",
+  },
+  ["@media (min-width:375px) and (max-width:599px)"]: {
+    fontSize: 16,
+    padding: "5px 15px",
+  },
+  ["@media (min-width:600px) and (max-width:768px)"]: {
+    fontSize: 14,
+    padding: "5px 15px",
+  },
 }));
 
 const Login = () => {
   return (
     <div className="login">
-      <Container fixed>
+      <Container maxWidth="lg">
         <Grid container spacing={4}>
           <Grid item xs={6}>
-            <img src="icons/facebook.svg"/>
-            <p className="logo_text">
-              Facebook helps you connect and share with the people in your life.
-            </p>
+            <div className="left">
+              <div>
+                <div className="img">
+                  <img src="icons/facebook.svg" />
+                </div>
+                <p className="logo_text">
+                  Facebook helps you connect and share with the people in your
+                  life.
+                </p>
+              </div>
+            </div>
           </Grid>
           <Grid item xs={6}>
             <div className="box">
