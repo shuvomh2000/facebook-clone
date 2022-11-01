@@ -4,6 +4,10 @@
     background: #F0F2F5;
 }
 
+.login img{
+    margin-left: -63px;
+}
+
 .login .box{
     padding: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
@@ -22,12 +26,13 @@
 }
 
 .login .forget{
+    display: block;
+    text-decoration: none;
     color: #1877F2;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
-    cursor: pointer;
     padding-bottom: 24px;
     border-bottom: 1px solid #DDDFE2;
 }
