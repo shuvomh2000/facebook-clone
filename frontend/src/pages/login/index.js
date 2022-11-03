@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
-import { Container, Grid, TextField, Button } from "@mui/material";
+import { Container, Grid, TextField, Button, Alert,List,ListItemButton,ListSubheader,ListItemIcon,ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import {BsCheckLg} from 'react-icons/bs'
+import {ImCross} from 'react-icons/im'
 
 // for styled textfiled
 const CssTextField = styled(TextField)({
@@ -61,6 +63,36 @@ const CreateButton = styled(Button)(({ theme }) => ({
 }));
 
 const Login = () => {
+  let [email, setEmail] = useState("");
+  let [emailerr, setEmailerr] = useState("");
+  let [password, setPassword] = useState("");
+  let [passworderr, setPassworderr] = useState("");
+  // let [lowercase, setLowercase] = useState(false);
+  // let [uppercase, setUppercase] = useState(false);
+  // let [number, setNumber] = useState(false);
+  // let [symbol, setSymbol] = useState(false);
+  // let [lenght, setLenght] = useState(false);
+
+  let handleEmail = (e)=>{
+    setEmail(e.target.value)
+    setEmailerr('')
+  }
+
+  let handlePassword = (e)=>{
+    setPassword(e.target.value)
+    setPassworderr('')
+  }
+
+  let handleSubmit = () => {
+    if (!email) {
+      setEmailerr("email is required");
+    }
+
+    if (!password) {
+      setPassworderr("password is required");
+    } 
+  };
+
   return (
     <div className="login">
       <Container maxWidth="lg">
@@ -80,23 +112,49 @@ const Login = () => {
           </Grid>
           <Grid item xs={6}>
             <div className="box">
+              {/* email input */}
               <CssTextField
                 id="outlined-basic"
                 label="Email adress"
                 variant="outlined"
+                onChange={handleEmail}
               />
+              {emailerr && (
+                <Alert
+                  style={{ marginTop: "-15px", marginBottom: "10px" }}
+                  variant="filled"
+                  severity="error"
+                >
+                  {emailerr}
+                </Alert>
+              )}
+              {/* password input */}
               <CssTextField
                 id="outlined-basic"
                 label="Password"
                 variant="outlined"
                 type="password"
+                onChange={handlePassword}
               />
-              <MainButton variant="contained">Log in</MainButton>
+              {passworderr && (
+                <Alert
+                  style={{ marginTop: "-15px", marginBottom: "10px" }}
+                  variant="filled"
+                  severity="error"
+                >
+                  {passworderr}
+                </Alert>
+              )}
+              {/* log btn */}
+              <MainButton variant="contained" onClick={handleSubmit}>
+                Log in
+              </MainButton>
+              {/* forget password */}
               <Link to="/" className="forget">
                 Forgotten password?
               </Link>
-
               <div style={{ textAlign: "center" }}>
+                {/* create new account */}
                 <CreateButton variant="contained">
                   create new account
                 </CreateButton>
