@@ -125,12 +125,15 @@ const Registration = () => {
   //   date of birth
   let handleYearChange = (e) => {
     setSelectyear(e.target.value);
+    setDateofbirtherr('')
   };
   let handleMonthChange = (e)=>{
     setSelectmonth(e.target.value)
+    setDateofbirtherr('')
   }
   let handleDayChange = (e)=>{
     setSelectday(e.target.value)
+    setDateofbirtherr('')
   }
 
   //   password controller
