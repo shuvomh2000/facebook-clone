@@ -18,7 +18,8 @@ import {
   MenuItem,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import axios from "axios";
 import { BsCheckLg } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 
@@ -43,6 +44,7 @@ const MainButton = styled(Button)(({ theme }) => ({
   fontWeight: "500",
   padding: "10px 15px",
   textTransform: "none",
+  marginTop: "30px",
   marginBottom: "15px",
   fontFamily: ["Poppins", " sans-serif"],
   ["@media (min-width:375px) and (max-width:599px)"]: {
@@ -92,18 +94,27 @@ const Registration = () => {
   let [number, setNumber] = useState(false);
   let [symbol, setSymbol] = useState(false);
   let [lenght, setLenght] = useState(false);
-  let [selectyear, setSelectyear] = useState('');
-  let [selectmonth, setSelectmonth] = useState('');
-  let [selectday, setSelectday] = useState('');
+  let [selectyear, setSelectyear] = useState("");
+  let [selectmonth, setSelectmonth] = useState("");
+  let [selectday, setSelectday] = useState("");
   let [dateofbirtherr, setDateofbirtherr] = useState(false);
+  let [gender, setGender] = useState("");
+  let [gendererr, setGendererr] = useState("");
+  let [backenderr, setBackenderr] = useState("");
+  let [success, setsuccess] = useState("");
+
+  const Navigate = useNavigate()
 
   //   date of birth
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
   const years = Array.from(new Array(60), (val, index) => year - index);
-  const months = Array.from(new Array(12),(val,index)=> 1+ index)
-  const days = Array.from(new Array(new Date(selectyear,selectmonth,0).getDate()),(val,index)=> 1+ index)
+  const months = Array.from(new Array(12), (val, index) => 1 + index);
+  const days = Array.from(
+    new Array(new Date(selectyear, selectmonth, 0).getDate()),
+    (val, index) => 1 + index
+  );
 
-//   const days = Array.from(new Array(12),(val,index)=> 1+ index)
+  //   const days = Array.from(new Array(12),(val,index)=> 1+ index)
   //   first name controller
   let handleFirstName = (e) => {
     setFirstname(e.target.value);
@@ -125,67 +136,99 @@ const Registration = () => {
   //   date of birth
   let handleYearChange = (e) => {
     setSelectyear(e.target.value);
-    setDateofbirtherr('')
+    setDateofbirtherr("");
   };
-  let handleMonthChange = (e)=>{
-    setSelectmonth(e.target.value)
-    setDateofbirtherr('')
-  }
-  let handleDayChange = (e)=>{
-    setSelectday(e.target.value)
-    setDateofbirtherr('')
-  }
+  let handleMonthChange = (e) => {
+    setSelectmonth(e.target.value);
+    setDateofbirtherr("");
+  };
+  let handleDayChange = (e) => {
+    setSelectday(e.target.value);
+    setDateofbirtherr("");
+  };
 
-  //   password controller
+  // Gender
+  let handleGender = (gender) => {
+    setGender(gender);
+    setGendererr("");
+  };
+
+  // password controller
   let handlePassword = (e) => {
     setPassword(e.target.value);
     //   setPassworderr('')
-    if (!/^(?=.*[a-z])/.test(password)) {
-      setPassworderr("lowercase is required");
-      // setLowercase(true);
-    } else if (!/^(?=.*[A-Z])/.test(password)) {
-      setPassworderr("uppercase is required");
-      setLowercase(true);
-    } else if (!/^(?=.*[0-9])/.test(password)) {
-      setPassworderr("number is required");
-      setUppercase(true);
-    } else if (!/^(?=.*[!@#$%^&*])/.test(password)) {
-      setPassworderr("symbol is required");
-      setNumber(true);
-    } else if (!/^(?=.{8,})/.test(password)) {
-      setPassworderr("minimum 8 cherecter");
-      setSymbol(true);
-    } else {
-      setLenght(true);
+    // frontend validtion if needed
+    // if (!/^(?=.*[a-z])/.test(password)) {
+    //   setPassworderr("lowercase is required");
+    //   // setLowercase(true);
+    // } else if (!/^(?=.*[A-Z])/.test(password)) {
+    //   setPassworderr("uppercase is required");
+    //   setLowercase(true);
+    // } else if (!/^(?=.*[0-9])/.test(password)) {
+    //   setPassworderr("number is required");
+    //   setUppercase(true);
+    // } else if (!/^(?=.*[!@#$%^&*])/.test(password)) {
+    //   setPassworderr("symbol is required");
+    //   setNumber(true);
+    // } else if (!/^(?=.{8,})/.test(password)) {
+    //   setPassworderr("minimum 8 cherecter");
+    //   setSymbol(true);
+    // } else {
+    //   setLenght(true);
+    // }
+  };
+
+  // backend validtion
+  let handleSubmit = async () => {
+    try {
+      let data = await axios.post("http://localhost:8000/register", {
+        first_name: firstname,
+        last_name: lastname,
+        email: email,
+        password: password,
+        bYear: selectyear,
+        bMonth: selectmonth,
+        bDay: selectday,
+        gender: gender,
+      })
+      setsuccess(data.data.message);
+      Navigate("/login")
+    } catch (error) {
+      setBackenderr(error.response.data.message);
     }
   };
 
-  let handleSubmit = () => {
-    // first name check
-    if (!firstname) {
-      setFirstnameerr("First name required");
-    }
-    // last name check
-    if (!lastname) {
-      setlastnameerr("Last name required");
-    }
-    // email check
-    if (!email) {
-      setEmailerr("email is required");
-    } else {
-      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        setEmailerr("valid email is required");
-      }
-    }
-    // password check
-    if (!password) {
-      setPassworderr("password is required");
-    }
-    // date of birth check
-    if(selectday == '' || selectmonth == '' || selectyear == ''){
-        setDateofbirtherr("Fill the Date of Birth")
-    }
-  };
+  // frontend valodation if needed
+  // let handleSubmit = () => {
+  //   // first name check
+  //   if (!firstname) {
+  //     setFirstnameerr("First name required");
+  //   }
+  //   // last name check
+  //   if (!lastname) {
+  //     setlastnameerr("Last name required");
+  //   }
+  //   // email check
+  //   if (!email) {
+  //     setEmailerr("email is required");
+  //   } else {
+  //     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+  //       setEmailerr("valid email is required");
+  //     }
+  //   }
+  //   // password check
+  //   if (!password) {
+  //     setPassworderr("password is required");
+  //   }
+  //   // date of birth check
+  //   if (selectday == "" || selectmonth == "" || selectyear == "") {
+  //     setDateofbirtherr("Fill the Date of Birth");
+  //   }
+  //   // gender check
+  //   if (gender == "") {
+  //     setGendererr("Select your gender");
+  //   }
+  // };
 
   return (
     <div className="login registration">
@@ -286,11 +329,11 @@ const Registration = () => {
                           id="demo-simple-select"
                           value={selectday}
                           label="Age"
-                            onChange={handleDayChange}
+                          onChange={handleDayChange}
                         >
-                            {days.map((item)=>(
-                                <MenuItem value={item}>{item}</MenuItem>
-                            ))}
+                          {days.map((item) => (
+                            <MenuItem value={item}>{item}</MenuItem>
+                          ))}
                         </Select>
                       </FormControl>
                     </Box>
@@ -309,22 +352,22 @@ const Registration = () => {
                           label="Age"
                           onChange={handleMonthChange}
                         >
-                         {months.map((item)=>(
+                          {months.map((item) => (
                             <MenuItem value={item}>
-                                {item == 1 && "January"}
-                                {item == 2 && "February"}
-                                {item == 3 && "March"}
-                                {item == 4 && "April"}
-                                {item == 5 && "May"}
-                                {item == 6 && "June"}
-                                {item == 7 && "July"}
-                                {item == 8 && "August"}
-                                {item == 9 && "September"}
-                                {item == 10 && "October"}
-                                {item == 11 && "November"}
-                                {item == 12 && "December"}
+                              {item == 1 && "January"}
+                              {item == 2 && "February"}
+                              {item == 3 && "March"}
+                              {item == 4 && "April"}
+                              {item == 5 && "May"}
+                              {item == 6 && "June"}
+                              {item == 7 && "July"}
+                              {item == 8 && "August"}
+                              {item == 9 && "September"}
+                              {item == 10 && "October"}
+                              {item == 11 && "November"}
+                              {item == 12 && "December"}
                             </MenuItem>
-                         ))}
+                          ))}
                         </Select>
                       </FormControl>
                     </Box>
@@ -352,15 +395,80 @@ const Registration = () => {
                   </Grid>
                 </Grid>
                 {dateofbirtherr && (
+                  <Alert
+                    style={{ marginTop: "-15px", marginBottom: "10px" }}
+                    variant="filled"
+                    severity="error"
+                  >
+                    {dateofbirtherr}
+                  </Alert>
+                )}
+              </div>
+              <div className="genderBox">
+                <Grid container spacing={4}>
+                  <Grid item xs={3}>
+                    <div className="genderInput">
+                      <label for="male">Male</label>
+                      <input
+                        onChange={() => handleGender("male")}
+                        id="male"
+                        name="gender"
+                        type="radio"
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <div className="genderInput">
+                      <label for="female">Female</label>
+                      <input
+                        onChange={() => handleGender("female")}
+                        id="female"
+                        name="gender"
+                        type="radio"
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <div className="genderInput">
+                      <label for="custom">Custom</label>
+                      <input
+                        onChange={() => handleGender("custom")}
+                        id="custom"
+                        name="gender"
+                        type="radio"
+                      />
+                    </div>
+                  </Grid>
+                </Grid>
+              </div>
+              {gendererr && (
                 <Alert
-                  style={{ marginTop: "-15px", marginBottom: "10px" }}
+                  style={{ marginBottom: "10px" }}
                   variant="filled"
                   severity="error"
                 >
-                  {dateofbirtherr}
+                  {gendererr}
                 </Alert>
               )}
-              </div>
+              {/* backend error massage */}
+              {backenderr && (
+                <Alert
+                  style={{ marginBottom: "10px" }}
+                  variant="filled"
+                  severity="error"
+                >
+                  {backenderr}
+                </Alert>
+              )}
+              {success && (
+                <Alert
+                  style={{ marginBottom: "10px" }}
+                  variant="filled"
+                  severity="success"
+                >
+                  {success}
+                </Alert>
+              )}
               {/* <List
                 sx={{
                   width: "100%",
@@ -432,7 +540,7 @@ const Registration = () => {
               </List> */}
               {/* log btn */}
               <MainButton variant="contained" onClick={handleSubmit}>
-                Log in
+                SIGN UP
               </MainButton>
               {/* forget password */}
               <Link to="/" className="forget">

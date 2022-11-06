@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
 
     // email validation
     if (!validateEmail(email)) {
-      res.status(400).json({ message: "invalid Email Adress" });
+      res.status(400).json({ message: "invalid Email Adress" })
     }
     // user validation if user exits or not
     const check = await User.findOne({ email });
@@ -70,9 +70,9 @@ exports.register = async (req, res) => {
       gender,
     }).save();
 
-    const emailVerificationToken = generateToken({id:user._id},'30m')
-    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`
-    sendVerificationMail(user.email,user.first_name,url)
+    // const emailVerificationToken = generateToken({id:user._id},'30m')
+    // const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`
+    // sendVerificationMail(user.email,user.first_name,url)
     const token = generateToken({id:user._id.toString()},'7d')
     res.send({
       id:user._id,
@@ -81,7 +81,7 @@ exports.register = async (req, res) => {
       last_name:user.last_name,
       token: token,
       varified:user.varified,
-      message:"Register Success active your email"
+      message:"Register Success. active your account via mail"
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

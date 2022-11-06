@@ -3,6 +3,7 @@ import "./login.css";
 import { Container, Grid, TextField, Button, Alert,List,ListItemButton,ListSubheader,ListItemIcon,ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 import {BsCheckLg} from 'react-icons/bs'
 import {ImCross} from 'react-icons/im'
 
@@ -67,6 +68,8 @@ const Login = () => {
   let [emailerr, setEmailerr] = useState("");
   let [password, setPassword] = useState("");
   let [passworderr, setPassworderr] = useState("");
+  let [backenderr, setBackenderr] = useState("");
+  let [success, setSuccess] = useState("");
   // let [lowercase, setLowercase] = useState(false);
   // let [uppercase, setUppercase] = useState(false);
   // let [number, setNumber] = useState(false);
@@ -83,14 +86,24 @@ const Login = () => {
     setPassworderr('')
   }
 
-  let handleSubmit = () => {
-    if (!email) {
-      setEmailerr("email is required");
+  let handleSubmit =async () => {
+    // backend validation
+    try {
+      let data = await axios.post("http://localhost:8000/login",{
+      email:email,
+      password: password
+    }) 
+    console.log(data.data)
+    } catch (error) {
+      setBackenderr(error.response.data.message)
     }
-
-    if (!password) {
-      setPassworderr("password is required");
-    } 
+    // frontend validation
+    // if (!email) {
+    //   setEmailerr("email is required");
+    // }
+    // if (!password) {
+    //   setPassworderr("password is required");
+    // } 
   };
 
   return (
@@ -143,6 +156,15 @@ const Login = () => {
                   severity="error"
                 >
                   {passworderr}
+                </Alert>
+              )}
+              {backenderr && (
+                <Alert
+                  style={{ marginTop: "-15px", marginBottom: "10px" }}
+                  variant="filled"
+                  severity="error"
+                >
+                  {backenderr}
                 </Alert>
               )}
               {/* log btn */}

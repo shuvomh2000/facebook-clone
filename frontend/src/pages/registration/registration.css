@@ -48,8 +48,21 @@ body{
 
 .registration .DOB{
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
+
+.registration .genderInput{
+    width: 100%;
+    padding: 15px 10px;
+    border: 1px solid #c4c4c4;
+    cursor: pointer;
+}
+
+.registration .genderInput label{ 
+   padding-right: 25px;
+   cursor: pointer;
+}
+
 
 /* mobile device */
 @media (min-width:375px) and (max-width:599px){
