@@ -108,9 +108,10 @@ const Login = () => {
         email: email,
         password: password,
       });
-      console.log(data.data);
       Dispatch(login(data.data));
+      setSuccess(data.data.message)
       setTimeout(() => {
+        setSuccess('')
         navigate("/");
       }, 2000);
     } catch (error) {
@@ -184,6 +185,15 @@ const Login = () => {
                   severity="error"
                 >
                   {backenderr}
+                </Alert>
+              )}
+              {success && (
+                <Alert
+                  style={{ marginTop: "-15px", marginBottom: "10px" }}
+                  variant="filled"
+                  severity="success"
+                >
+                  {success}
                 </Alert>
               )}
               {/* log btn */}

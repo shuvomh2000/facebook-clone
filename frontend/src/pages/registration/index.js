@@ -193,6 +193,7 @@ const Registration = () => {
       });
       setsuccess(data.data.message);
       setTimeout(() => {
+        setsuccess('')
         Navigate("/login");
       }, 2000);
     } catch (error) {
