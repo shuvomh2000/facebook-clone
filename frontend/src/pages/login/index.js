@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import "./login.css";
-import { Container, Grid, TextField, Button, Alert,List,ListItemButton,ListSubheader,ListItemIcon,ListItemText } from "@mui/material";
+import {
+  Container,
+  Grid,
+  TextField,
+  Button,
+  Alert,
+  List,
+  ListItemButton,
+  ListSubheader,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
-import axios from 'axios'
-import {BsCheckLg} from 'react-icons/bs'
-import {ImCross} from 'react-icons/im'
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../../slice/userSlice";
+import { BsCheckLg } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
 
 // for styled textfiled
 const CssTextField = styled(TextField)({
@@ -64,6 +77,8 @@ const CreateButton = styled(Button)(({ theme }) => ({
 }));
 
 const Login = () => {
+  let Dispatch = useDispatch();
+  let navigate = useNavigate();
   let [email, setEmail] = useState("");
   let [emailerr, setEmailerr] = useState("");
   let [password, setPassword] = useState("");
@@ -76,26 +91,30 @@ const Login = () => {
   // let [symbol, setSymbol] = useState(false);
   // let [lenght, setLenght] = useState(false);
 
-  let handleEmail = (e)=>{
-    setEmail(e.target.value)
-    setEmailerr('')
-  }
+  let handleEmail = (e) => {
+    setEmail(e.target.value);
+    setEmailerr("");
+  };
 
-  let handlePassword = (e)=>{
-    setPassword(e.target.value)
-    setPassworderr('')
-  }
+  let handlePassword = (e) => {
+    setPassword(e.target.value);
+    setPassworderr("");
+  };
 
-  let handleSubmit =async () => {
+  let handleSubmit = async () => {
     // backend validation
     try {
-      let data = await axios.post("http://localhost:8000/login",{
-      email:email,
-      password: password
-    }) 
-    console.log(data.data)
+      let data = await axios.post("http://localhost:8000/login", {
+        email: email,
+        password: password,
+      });
+      console.log(data.data);
+      Dispatch(login(data.data));
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
-      setBackenderr(error.response.data.message)
+      setBackenderr(error.response.data.message);
     }
     // frontend validation
     // if (!email) {
@@ -103,7 +122,7 @@ const Login = () => {
     // }
     // if (!password) {
     //   setPassworderr("password is required");
-    // } 
+    // }
   };
 
   return (
@@ -178,7 +197,7 @@ const Login = () => {
               <div style={{ textAlign: "center" }}>
                 {/* create new account */}
                 <CreateButton variant="contained">
-                  create new account
+                  <Link to="/registration" className="lastBtn">create new account</Link>
                 </CreateButton>
               </div>
             </div>

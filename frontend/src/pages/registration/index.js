@@ -18,7 +18,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BsCheckLg } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
@@ -103,7 +103,7 @@ const Registration = () => {
   let [backenderr, setBackenderr] = useState("");
   let [success, setsuccess] = useState("");
 
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
 
   //   date of birth
   const year = new Date().getFullYear();
@@ -190,9 +190,11 @@ const Registration = () => {
         bMonth: selectmonth,
         bDay: selectday,
         gender: gender,
-      })
+      });
       setsuccess(data.data.message);
-      Navigate("/login")
+      setTimeout(() => {
+        Navigate("/login");
+      }, 2000);
     } catch (error) {
       setBackenderr(error.response.data.message);
     }
@@ -548,7 +550,9 @@ const Registration = () => {
               </Link>
               <div style={{ textAlign: "center" }}>
                 {/* create new account */}
-                <CreateButton variant="contained">Already have?</CreateButton>
+                <CreateButton variant="contained">
+                  <Link to="/login" className="lastBtn">Already have?</Link>
+                </CreateButton>
               </div>
             </div>
           </Grid>

@@ -42,6 +42,11 @@ body{
     border-bottom: 1px solid #DDDFE2;
 }
 
+.login .lastBtn{
+    text-decoration: none;
+    color: #fff;
+}
+
 .login .forget:hover{
     text-decoration: underline;
 }
