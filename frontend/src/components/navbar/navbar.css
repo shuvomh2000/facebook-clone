@@ -1,0 +1,154 @@
+nav{
+    display: flex;
+    justify-content: center;
+    padding: 20px 24px;
+    background: #615DFA;
+    column-gap: 30px;
+}
+
+nav .logo{
+    max-width: 10%;
+}
+
+nav .menuItem{
+    max-width: 90%;
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+}
+
+nav .mainMenu ul{
+    display: flex;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    align-items: center;
+    column-gap: 30px;
+}
+
+nav .mainMenu ul li{
+    cursor: pointer;
+}
+
+nav .mainMenu ul li:first-child,
+nav .mainMenu ul li:last-child
+{
+    font-size: 20px;
+    margin-top: 6px;
+}
+
+nav .search{
+    position: relative;
+}
+
+nav .search input{
+    width: 415px;
+    padding: 10px 15px;
+    border-radius: 50px;
+    border: 0;
+    color: #6965E0;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav .search input::placeholder{
+    color: #6965E0;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav .search .searchIcon{
+    color: #6965E0;
+    font-size: 18x;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+nav .search input:focus-visible{
+    outline: 0;
+}
+
+nav .exp{
+    width: 111px;
+}
+
+nav .exp .expText{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 5px;
+}
+
+nav .exp .outterline{
+    position: relative;
+    width: 111px;
+    height: 3px;
+    background: #4E4AC8;
+    border-radius: 7px;
+}
+
+nav .exp .innerline{
+    position: absolute;
+    height: 3px;
+    background: #41EFFF;
+    top: 0;
+    left: 0;
+    border-radius: 7px;
+}
+
+nav .lasticons{
+    display: flex;
+    font-size: 20px;
+}
+
+nav .lasticons .icons {
+    display: flex;
+    color: #7A77FD;
+    column-gap: 25px;
+    padding: 7px 30px;
+    border-left: 1px solid #7A77FD;
+    border-right: 1px solid #7A77FD;
+}
+
+nav .lasticons .icons .cart{
+    position: relative;
+}
+
+nav .lasticons .icons .cart span{
+    position: absolute;
+    right: -4px;
+    bottom: -2px;
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav .lasticons .icons .dotHolder{
+    position: relative;
+}
+
+nav .lasticons .icons .dotHolder .dot{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #41EFFF;
+    right: 2px;
+    bottom: 7px;
+}
+
+nav .setting {
+    color: #7A77FD;
+    padding: 7px 0;
+    margin-left: 25px;
+}

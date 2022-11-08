@@ -1,33 +1,43 @@
 const nodemailer = require("nodemailer")
-const {google} = require("googleapis")
-const {OAuth2} =google.auth
+// const {google} = require("googleapis")
+// const {OAuth2} =google.auth
 
-const accessLink = "https://developers.google.com/oauthplayground"
+// const accessLink = "https://developers.google.com/oauthplayground"
 
-const {EMAIL,MAILING_ID,MAILING_SECRET,MAILING_REFRESH} = process.env
 
-const auth = new OAuth2(
-    MAILING_ID,
-    MAILING_SECRET,
-    MAILING_REFRESH,
-    accessLink
-)
+
+// --------------
+// refresh token comment out
+// --------------
+
+
+const {EMAIL,
+    // MAILING_ID,MAILING_SECRET,MAILING_REFRESH
+} = process.env
+
+// const auth = new OAuth2(
+//     MAILING_ID,
+//     MAILING_SECRET,
+//     MAILING_REFRESH,
+//     accessLink
+// )
 
 exports.sendVerificationMail = (email,name,url) => {
-    auth.setCredentials({
-        refresh_token:MAILING_REFRESH
-    })
+    // auth.setCredentials({
+    //     refresh_token:MAILING_REFRESH
+    // })
     
-    const accessToken = auth.getAccessToken()
+    // const accessToken = auth.getAccessToken()
     const stmp = nodemailer.createTransport({
         service:"gmail",
         auth:{
-            type: "OAuth2",
+            // type: "OAuth2",
             user: EMAIL,
-            clientId:MAILING_ID,
-            clientSecret:MAILING_SECRET,
-            refreshToken:MAILING_REFRESH,
-            accessToken
+            pass:'nnkfwgucdwreljvx'
+            // clientId:MAILING_ID,
+            // clientSecret:MAILING_SECRET,
+            // refreshToken:MAILING_REFRESH,
+            // accessToken
         }
     })
     const mailOption = {
