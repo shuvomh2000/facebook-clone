@@ -1,0 +1,110 @@
+.newsfeed {
+  margin-top: 32px;
+  background: #fff;
+  height: 100vh;
+}
+
+.newsfeed .newsprofileContainer {
+  text-align: center;
+}
+
+.newsfeed .newsprofileContainer .newscoverPic {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.newsfeed .newsprofileContainer .newsprofilePic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 12px solid #fff;
+  margin-top: -85px;
+}
+
+.newsfeed .nameholder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.newsfeed .counting {
+  width: 250px;
+}
+
+.newsfeed .counting ul {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.newsfeed .counting ul li {
+  position: relative;
+}
+
+.newsfeed .counting ul li h3 {
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.newsfeed .counting ul li p {
+  color: #afb0c0;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+}
+
+.newsfeed .counting ul li:after {
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 1px;
+  background: #afb0c0;
+  top: 50%;
+  right: -50%;
+  transform: translate(50%, -50%);
+}
+
+.newsfeed .nameText{
+    text-align: center;
+    width: 250px;
+}
+
+.newsfeed .nameText h3 {
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.newsfeed .nameText p {
+  color: #afb0c0;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.newsfeed .counting ul li:last-child:after {
+  display: none;
+}
+
+.newsfeed .nameholder .icons {
+  display: flex;
+  column-gap: 12px;
+  width: 250px;
+  justify-content: end;
+}
+
+.newsfeed .nameholder .icons .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

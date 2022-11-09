@@ -1,0 +1,113 @@
+.Sidenavbar {
+  background: #fff;
+  height: 100vh;
+}
+
+.profileContainer,
+.Sidenavbar .nameContainer {
+  text-align: center;
+}
+
+.Sidenavbar .profileContainer .coverPic {
+  height: 75px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.Sidenavbar .profileContainer .profilePic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 10px solid #fff;
+  margin-top: -50px;
+  margin-bottom: 15px;
+}
+
+.Sidenavbar .nameContainer h3 {
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.Sidenavbar .nameContainer p {
+  color: #afb0c0;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.Sidenavbar .counting {
+  width: 250px;
+  margin: 72px auto 0 auto;
+}
+
+.Sidenavbar .counting ul {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Sidenavbar .counting ul li {
+  position: relative;
+}
+
+.Sidenavbar .counting ul li h3 {
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.Sidenavbar .counting ul li p {
+  color: #afb0c0;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+}
+
+.Sidenavbar .counting ul li:after {
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 1px;
+  background: #afb0c0;
+  top: 50%;
+  right: -50%;
+  transform: translate(50%, -50%);
+}
+
+.Sidenavbar .counting ul li:last-child:after {
+  display: none;
+}
+
+.Sidenavbar .sideMenu {
+  width: 300px;
+  margin-left: 20px;
+  margin-top: 50px;
+}
+
+.Sidenavbar .sideMenu ul li {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  color: #afb0c0;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  transition: all linear 0.2s;
+  cursor: pointer;
+}
+
+.Sidenavbar .sideMenu ul li .icon {
+  margin-right: 30px;
+  font-size: 20px;
+}
+
+.Sidenavbar .sideMenu ul li:hover {
+  color: #fff;
+  background: #23d2e2;
+}
