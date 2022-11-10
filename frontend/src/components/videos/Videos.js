@@ -14,19 +14,19 @@ const Videos = () => {
       <div className="videoContain">
         <img src="images/profilevideoside.png" />
         <div className="playBtn">
-          <BsFillPlayFill  className="icon"/>
+          <BsFillPlayFill className="icon" />
         </div>
       </div>
       <div className="videoContain">
         <img src="images/profilevideoside.png" />
         <div className="playBtn">
-          <BsFillPlayFill  className="icon"/>
+          <BsFillPlayFill className="icon" />
         </div>
       </div>
       <div className="videoContain">
         <img src="images/profilevideoside.png" />
         <div className="playBtn">
-          <BsFillPlayFill  className="icon"/>
+          <BsFillPlayFill className="icon" />
         </div>
       </div>
     </div>

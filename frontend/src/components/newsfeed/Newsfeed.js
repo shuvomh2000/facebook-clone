@@ -8,6 +8,7 @@ import { Grid } from "@mui/material/";
 import About from "../about/About";
 import Photos from "../photos/Photos";
 import Videos from "../videos/Videos";
+import Post from "../post/Post";
 
 const Newsfeed = () => {
   let user = useSelector((state) => state.user.userInfo);
@@ -75,7 +76,7 @@ const Newsfeed = () => {
             <Videos/>
           </Grid>
           <Grid item xs={5}>
-            <h1>xs=8</h1>
+            <Post/>
           </Grid>
         </Grid>
       </div>

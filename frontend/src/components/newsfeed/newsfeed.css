@@ -2,7 +2,7 @@
   margin-top: 32px;
 }
 
-.newsfeed .newsfeedContainer{
+.newsfeed .newsfeedContainer {
   padding-bottom: 25px;
   background: #fff;
   border-radius: 20px;
@@ -73,9 +73,9 @@
   transform: translate(50%, -50%);
 }
 
-.newsfeed .nameText{
-    text-align: center;
-    width: 250px;
+.newsfeed .nameText {
+  text-align: center;
+  width: 250px;
 }
 
 .newsfeed .nameText h3 {
@@ -113,6 +113,6 @@
   align-items: center;
 }
 
-.newsfeed .newsfeedMain{
+.newsfeed .newsfeedMain {
   margin-top: 33px;
 }

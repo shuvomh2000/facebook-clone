@@ -1,0 +1,58 @@
+.post {
+  width: 585px;
+  background: #fff;
+  border-radius: 15px;
+}
+
+.post .postContainer {
+  padding: 21px 41px 0 20px;
+}
+
+.post .postHolder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post .postHolder .postProfile {
+  display: flex;
+}
+
+.post .postHolder .postProfile .imgContain {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #d9d9d9;
+}
+
+.post .postHolder .postProfile .imgContain img {
+  width: 100%;
+}
+
+.post .postHolder .postProfile .postProfileText {
+  margin-top: 9px;
+  margin-left: 13px;
+}
+
+.post .postHolder .postProfile .postProfileText h4 {
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.post .postHolder .postProfile .postProfileText p {
+  color: #afb0c0;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.post .status {
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  line-height: 18px;
+  padding-bottom: 29px;
+  border-bottom: 1px solid #d9d9d9;
+}
