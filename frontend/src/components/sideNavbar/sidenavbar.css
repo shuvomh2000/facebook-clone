@@ -1,6 +1,7 @@
 .Sidenavbar {
   background: #fff;
-  height: 100vh;
+  height: 100%;
+  position: sticky;
 }
 
 .profileContainer,

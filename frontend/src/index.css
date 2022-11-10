@@ -11,3 +11,7 @@ a{
     text-decoration: none;
     display: inline-block;
 }
+
+body{
+    background: #000;
+}

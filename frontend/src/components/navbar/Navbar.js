@@ -32,7 +32,7 @@ const Navbar = () => {
         </div>
         {/* search */}
         <div className="search">
-          <input placeholder="Search here ...." />
+          <input placeholder="Search here...." />
           <FaSearch className="searchIcon" />
         </div>
         {/* exp */}

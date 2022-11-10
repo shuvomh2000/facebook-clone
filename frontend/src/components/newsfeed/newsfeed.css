@@ -1,7 +1,11 @@
 .newsfeed {
   margin-top: 32px;
+}
+
+.newsfeed .newsfeedContainer{
+  padding-bottom: 25px;
   background: #fff;
-  height: 100vh;
+  border-radius: 20px;
 }
 
 .newsfeed .newsprofileContainer {
@@ -26,7 +30,7 @@
 
 .newsfeed .nameholder {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .newsfeed .counting {
@@ -107,4 +111,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.newsfeed .newsfeedMain{
+  margin-top: 33px;
 }

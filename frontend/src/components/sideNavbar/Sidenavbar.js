@@ -28,8 +28,10 @@ const Sidenavbar = () => {
         </picture>
       </div>
       <div className="nameContainer">
-        <h3>{`${user.first_name} ${user.last_name}`}</h3>
-        <p>www.{user.username}.com</p>
+        {/* {`${user.first_name} ${user.last_name}`} */}
+        <h3>mehedi hasan</h3>
+        {/* {user.username} */}
+        <p>www.shuvo.com</p>
       </div>
       <div className="counting">
         <ul>
